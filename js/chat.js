@@ -81,11 +81,15 @@
     if (!started){ started = true; add("¡Hola! Soy el asistente de V&A Recovery. Preguntame lo que quieras sobre el espacio y los servicios.", "bot"); }
     input.focus();
   }
-  function close(){ panel.hidden = true; fab.hidden = false; fab.setAttribute("aria-expanded","false"); fab.focus(); }
+  function close(refocus){ panel.hidden = true; fab.hidden = false; fab.setAttribute("aria-expanded","false"); if (refocus !== false) fab.focus(); }
 
   fab.addEventListener("click", open);
-  document.getElementById("chat-close").addEventListener("click", close);
+  document.getElementById("chat-close").addEventListener("click", function(){ close(); });
   document.addEventListener("keydown", function(e){ if (e.key === "Escape" && !panel.hidden) close(); });
+  // Se cierra solo al tocar fuera del chat
+  document.addEventListener("pointerdown", function(e){
+    if (!panel.hidden && !panel.contains(e.target) && !fab.contains(e.target)) close(false);
+  });
   document.getElementById("chat-form").addEventListener("submit", function(e){
     e.preventDefault();
     var q = input.value.trim(); if (!q) return;

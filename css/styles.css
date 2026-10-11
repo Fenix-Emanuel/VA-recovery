@@ -128,6 +128,15 @@ h2{font-family:var(--display);font-weight:300;font-size:clamp(1.7rem,4vw,2.7rem)
 .chat-form{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line)}
 .chat-form input{flex:1;min-width:0;background:var(--bg);border:1px solid var(--line);color:var(--fg);font:inherit;font-size:.92rem;padding:10px 12px}
 .chat-form button{background:var(--fg);color:var(--bg);border:0;padding:0 16px;font-family:var(--display);font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;cursor:pointer}
+/* El chat arranca cerrado */
+[hidden]{display:none!important}
+@media (max-width:600px){
+  .chat-fab{padding:14px;border-radius:50%}
+  .chat-fab .fab-label{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)}
+  .chat{right:12px;left:12px;width:auto;bottom:calc(12px + env(safe-area-inset-bottom,0px));height:min(62dvh,480px)}
+  .quick{flex-wrap:nowrap;overflow-x:auto;padding-bottom:10px}
+  .quick button{flex:none}
+}
 footer a{text-decoration:none}
 footer a:hover{color:var(--fg)}
 
